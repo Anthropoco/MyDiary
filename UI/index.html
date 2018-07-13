@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Diary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
+
+    <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+    <div class="header"></div>
+    <div class="content">
+        <p>Welcome to</p>
+        <h1 class="title">My Diary</h1>
+        <p class="tagline">your number 1 diary on the go.</p>
+        <p>New here?
+            <a href="#" onclick="displaySignUp()">Sign up</a>. | Or already a member?
+            <a href="#" onclick="displayLogin()">login</a>
+        </p>
+        <div class="overlay">
+            <div id="login" class="modal">
+                <div class="row">
+                    <div class="left"></div>
+                    <div class="times" onclick="closeModal()">&times;</div>
+                </div>
+                <div class="row">
+                    <label for="username" class="left">Username:</label>
+                    <input type="text" placeholder="enter username here..." id="username" name="username" class="right">
+                </div>
+                <div class="row">
+                    <label for="password" class="left">Password:</label>
+                    <input type="password" name="password" id="password" class="right" placeholder="enter password here...">
+                </div>
+                <div class="row">
+                    <span class="left"></span>
+                    <input type="submit" value="Log in" class="right">
+                </div>
+            </div>
+
+            <div id="sign-up" class="modal">
+                    <div class="row">
+                            <div class="left"></div>
+                            <div class="times" onclick="closeModal()">&times;</div>
+                        </div>
+                <div class="row">
+                    <label for="name" class="left">Name:</label>
+                    <input type="text" id="name" name="name" class="right">
+                </div>
+                <div class="row">
+                    <label for="email" class="left">Email:</label>
+                    <input type="text" class="right" id="email" name="name">
+                </div>
+                <div class="row">
+                    <label for="password" class="left">Password:</label>
+                    <input type="password" name="password" id="password" class="right">
+                </div>
+                <div class="row">
+                    <label for="confirm-password" class="left">Confirm Password:</label>
+                    <input type="password" id="confirm-password" class="right">
+                </div>
+                <div class="row">
+                    <span for="" class="left"></span>
+                    <input type="submit" value="Sign Up" class="right">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

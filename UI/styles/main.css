@@ -1,0 +1,92 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: aliceblue;
+}
+
+a{
+    color: aquamarine;
+}
+
+.content{
+    padding-top: 10%;
+    text-align: center;
+    line-height: 2em;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+
+   
+}
+
+.title{
+    font-size: 3em;
+}
+
+.tagline{
+    font-style: italic;
+}
+
+.header{
+    padding-left: 1em;
+    
+}
+
+.toolbar{
+    background-color: salmon;
+    color: black;
+    font-size: 1.5em;
+    font-variant: small-caps;
+    display: flex;
+    justify-content: right;
+    line-height: 2;
+    padding-right: 1em;
+
+}
+
+.toolbar a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.toolbar a:hover{
+    background-color: black;
+    color: salmon;
+}
+
+
+.row{
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.row .left{
+    flex-basis: 30%;
+}
+
+input[type=submit]{
+    background-color: black;
+    border: none;
+    /* width: 40%; */
+    line-height: 3;
+    color: aliceblue;
+    font-size: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.highlight{
+    color: aquamarine;
+    font-size: bigger;
+}

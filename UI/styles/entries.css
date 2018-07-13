@@ -1,0 +1,15 @@
+.content{
+    padding-top: 1em;
+}
+
+.row{
+    border: 1px solid aliceblue;
+    margin: 0;
+    padding-left: 1em;
+}
+
+.row:hover{
+    background-color: aquamarine;
+    color: black;
+    cursor: pointer;
+}

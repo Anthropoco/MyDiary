@@ -1,0 +1,43 @@
+.content{
+    justify-content: center;
+    align-content: center;
+}
+
+.overlay{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+}
+
+.modal{
+    background-color: aquamarine;
+    color: black;
+    border-radius: 5px; 
+    padding: 1em;
+    position: relative;  /*for accurately positioning &times;*/
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    margin-top: calc(50vh - 20%);
+}
+
+
+
+
+.times{
+    text-align: right;
+    margin: .25em;
+    line-height: 2;
+    position: absolute;
+    right: 1em;
+    font-weight: bold;
+    font-size: 1.5em;
+    cursor: pointer;
+    
+}
+
+
