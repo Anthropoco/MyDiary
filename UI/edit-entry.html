@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/edit-entry.css" />
-    <script src="scripts/main.js"></script>
 </head>
 
 <body>
@@ -17,7 +16,10 @@
         <p class="tagline">your number 1 diary on the go.</p>
     </div>
     <div class="toolbar">
-        <div class="logout"><a href="logout.html">log out</a></div>
+        <div class="view-profile"><a href="#" class="view-profile">View Profile</a></div> |
+        <div class="logout">
+            <a href="#">log out</a>
+        </div>
     </div>
     <div class="content">
         <form action="/posts" class="edit-form" method="POST">
@@ -36,5 +38,5 @@
         </form>
     </div>
 </body>
-
+<script src="scripts/main.js"></script>
 </html>

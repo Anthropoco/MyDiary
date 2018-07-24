@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
-
-    <script src="scripts/main.js" defer></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
 </head>
 
 <body>
@@ -38,7 +37,7 @@
                 </div>
                 <div class="row">
                     <span class="left"></span>
-                    <input type="submit" value="Log in" class="right">
+                    <input type="submit" value="Log in" class="right" onclick="login()">
                 </div>
             </div>
 
@@ -65,11 +64,11 @@
                 </div>
                 <div class="row">
                     <span for="" class="left"></span>
-                    <input type="submit" value="Sign Up" class="right">
+                    <input type="submit" value="Sign Up" class="right" onclick="createUser()">
                 </div>
             </div>
         </div>
     </div>
 </body>
-
+<script src="scripts/main.js"></script>
 </html>
