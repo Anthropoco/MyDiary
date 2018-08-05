@@ -2,6 +2,7 @@
 
 .edit-form input,textarea{
     width: 100%;
+    margin-left: 1rem;
 }
 
 .edit-form input[type='submit']{
@@ -9,6 +10,6 @@
     background-color: salmon;
     border: none;
     font-size: 1em;
-    width: 20%;
+    /* width: 20%; */
 
 }
