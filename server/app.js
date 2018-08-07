@@ -1,14 +1,10 @@
 const express = require('express');
 
-const model = require('./models/model.js');
-
+const  userRouter = require('./Routers/users.js');
+const entryRouter = require('./Routers/entries.js');
 const app = express();
 
-app.get('/entries', (req, res) => {
-  res.writeHead(200, 'OK', { 'content-type': 'text/json' });
-  res.write(model.entries); // res.writeHead(200, 'OK');
-  res.end();
-
-});
+app.use('/user', userRouter );
+app.use('/entries', entriesRouter);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
