@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 
-const  userRouter = require('./Routers/users.js');
-const entryRouter = require('./Routers/entries.js');
+import userRouter from './Routers/users.js';
+import entryRouter from './Routers/entries.js';
 const app = express();
 
-app.use('/user', userRouter );
-app.use('/entries', entriesRouter);
+app.use('/users', userRouter );
+app.use('/entries', entryRouter);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
