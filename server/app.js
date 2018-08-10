@@ -1,7 +1,7 @@
 import express from 'express';
+import userRouter from './routers/users.js';
+import entryRouter from './routers/entries.js';
 
-import userRouter from './Routers/users.js';
-import entryRouter from './Routers/entries.js';
 const app = express();
 
 app.use('/users', userRouter );
