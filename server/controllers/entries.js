@@ -17,8 +17,12 @@ const entriesController = (req, res) => {
 
     //get a particular entry
     app.get('/entries/:id', (req, res) => {
-        const entry = entriesModel.getUser(req.params.id);
-        res.json(entry);
+        const entry = entriesModel.getEntry(req.params.id);
+        if(entry){
+            res.json(entry);
+        }else{
+            res.send(400, "Ooops! We couldn't find the entry  you're looking for");
+        }
 
     });
 
@@ -36,7 +40,7 @@ const entriesController = (req, res) => {
 
     //modify an existing entry
     app.put('/entries/:id', (req, res) => {
-        const changedEntry = entriesModel.modifyEntry(req.params.id);
+        const changedEntry = entriesModel.modifyEntry(req.params.id, req.body);
         if (changedEntry) {
             res.send(200, "entry was modified successfully");
         } else {
