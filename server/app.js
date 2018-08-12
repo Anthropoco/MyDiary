@@ -1,10 +1,11 @@
 import express from 'express';
-import userRouter from './routers/users.js';
-import entryRouter from './routers/entries.js';
+import usersRouter from './routers/users.js';
+import entriesRouter from './routers/entries.js';
 
 const app = express();
 
-app.use('/users', userRouter);
-app.use('/entries', entryRouter);
+app.use('/users', usersRouter);
+app.use('/entries', entriesRouter);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.get('/entries', (req, res)=>{res.location('../UI/')})
