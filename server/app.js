@@ -8,4 +8,3 @@ app.use('/users', usersRouter);
 app.use('/entries', entriesRouter);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
-app.get('/entries', (req, res)=>{res.location('../UI/')})
