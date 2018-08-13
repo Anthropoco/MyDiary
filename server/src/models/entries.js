@@ -24,7 +24,7 @@ let entriesModel = {
     },
 
     modifyEntry(entryId, data) {
-        const entry = this.getEntry(entryId);
+        let entry = this.getEntry(entryId);
         if (!entry) return null;
 
         //TODO confirm if the following overwrites the entry
@@ -34,7 +34,7 @@ let entriesModel = {
     },
 
     deleteEntry(entryId) {
-        const entry = this.getEntry(entryId);
+        let entry = this.getEntry(entryId);
         const idx = entries.indexOf(entry);
         const prevlen = entries.length;
         entries.splice(idx, 1); //delete the element using its index
