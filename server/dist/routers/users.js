@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.usersRouter = undefined;
 
-var _users = require('./controllers/users');
+var _users = require('../controllers/users');
 
 var _users2 = _interopRequireDefault(_users);
 

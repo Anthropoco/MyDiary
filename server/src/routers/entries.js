@@ -1,4 +1,4 @@
-import entriesController from './controllers/entries';
+import entriesController from '../controllers/entries';
 
 const entriesRouter = (req, res, next) => {
     app.all('/entries', entriesController);

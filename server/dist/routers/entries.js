@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.entriesRouter = undefined;
 
-var _entries = require('./controllers/entries');
+var _entries = require('../controllers/entries');
 
 var _entries2 = _interopRequireDefault(_entries);
 

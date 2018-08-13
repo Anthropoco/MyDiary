@@ -1,4 +1,4 @@
-import entriesModel from './models/entries';
+import entriesModel from '../models/entries';
 
 const entriesController = (req, res) => {
     let users = usersModel.getAllUsers();
