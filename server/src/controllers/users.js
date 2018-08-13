@@ -42,5 +42,6 @@ const usersController = (req, res) => {
             }
         })
     }
+}
 
-export usersController;
+export { usersController };

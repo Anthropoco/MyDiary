@@ -4,7 +4,7 @@ const entriesController = (req, res) => {
     let users = usersModel.getAllUsers();
 
     //if user isn't a member, redirect to home page
-    if (!(users.indexof(user))) { res.send(400, "User doesn't exist")};
+    if (!(users.indexof(user))) { res.send(400, "User doesn't exist") };
 
 
 
@@ -18,9 +18,9 @@ const entriesController = (req, res) => {
     //get a particular entry
     app.get('/entries/:id', (req, res) => {
         const entry = entriesModel.getEntry(req.params.id);
-        if(entry){
+        if (entry) {
             res.json(entry);
-        }else{
+        } else {
             res.send(400, "Ooops! We couldn't find the entry  you're looking for");
         }
 
@@ -60,4 +60,4 @@ const entriesController = (req, res) => {
     })
 }
 
-export entriesController;
+export { entriesController };
