@@ -1,13 +1,13 @@
 const usersModel = {
-    getAllUsers(){},
+    getAllUsers() { },
 
-    getUser(){},
-    
-    createUser(data){},
-    
-    modifyUser(userId, data){},
-    
-    deleteUser(userId){}
+    getUser() { },
+
+    createUser(data) { },
+
+    modifyUser(userId, data) { },
+
+    deleteUser(userId) { }
 }
 
-export usersModel;
+export { usersModel };

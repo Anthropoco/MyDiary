@@ -1,8 +1,8 @@
 let entriesModel = {
 
-    id = 1, //create an id issuing system. it will be incremented for each new entry
+    id: 1, //create an id issuing system. it will be incremented for each new entry
 
-    entries = [
+    entries: [
         { id: id, date: "02/12/2017", title: "dummy entry title", text: "dummy entry body. lorem ipsum bla bla bla" },
     ],
 
@@ -42,4 +42,4 @@ let entriesModel = {
     }
 }
 
-export entriesModel;
+export { entriesModel };
