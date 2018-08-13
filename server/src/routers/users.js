@@ -6,4 +6,4 @@ const usersRouter = (req, res, next) => {
 }
 
 
-export usersRouter;
+export { usersRouter };

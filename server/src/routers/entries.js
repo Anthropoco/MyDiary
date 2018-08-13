@@ -4,4 +4,4 @@ const entriesRouter = (req, res, next) => {
     app.all('/entries', entriesController);
 }
 
-export entriesRouter;
+export { entriesRouter };
