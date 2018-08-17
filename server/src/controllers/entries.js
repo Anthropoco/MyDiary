@@ -38,15 +38,16 @@ const entriesController = (req, res) => {
 
 
     //create a new entry
-    app.post('/entries', (req, res) => {
+    let createNewEntry = (req, res) => {
         const newEntry = entriesModel.createEntry(req.body);
         if (newEntry) {
             res.send(200, "entry was created successfully");
         } else {
             res.send(400, "sorry we couldn't create the entry. Try again");
         }
-    })
+    };
 
+    if(req.method == 'POST') createNewEntry(req, res);
 
     //modify an existing entry
     app.put('/entries/:id', (req, res) => {

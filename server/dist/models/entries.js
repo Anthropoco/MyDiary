@@ -22,8 +22,8 @@ var entriesModel = {
         return null;
     },
     createEntry: function createEntry(data) {
-        data.id = id++; //assign id to our new entry
-        if (entries.push(data)) return data;
+        data.id = ++this.id; //assign id to our new entry
+        if (this.entries.push(data)) return data;
         return null;
     },
     modifyEntry: function modifyEntry(entryId, data) {

@@ -47,14 +47,16 @@ var entriesController = function entriesController(req, res) {
     if (req.method == 'GET' && !Boolean(Number(req.params.id))) getAllEntries(req, res);
 
     //create a new entry
-    _app2.default.post('/entries', function (req, res) {
+    var createNewEntry = function createNewEntry(req, res) {
         var newEntry = _entries2.default.createEntry(req.body);
         if (newEntry) {
             res.send(200, "entry was created successfully");
         } else {
             res.send(400, "sorry we couldn't create the entry. Try again");
         }
-    });
+    };
+
+    if (req.method == 'POST') createNewEntry(req, res);
 
     //modify an existing entry
     _app2.default.put('/entries/:id', function (req, res) {
