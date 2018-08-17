@@ -12,10 +12,11 @@ let entriesModel = {
     },
 
     getEntry(id) {
-        this.entries.forEach((entry, index) => {
-            if (id === entry.id) { return entry; };
-        });
+        for (let i = 0; i < this.entries.length; i++) {
+            if (id == this.entries[i].id) return this.entries[i];
+        }
         return null;
+
     },
 
     createEntry(data) {

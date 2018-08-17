@@ -14,11 +14,22 @@ var entriesModel = {
         return this.entries;
     },
     getEntry: function getEntry(id) {
-        this.entries.forEach(function (entry, index) {
-            if (id === entry.id) {
-                return entry;
-            };
-        });
+        console.log(id);
+        // const done = this.entries.forEach((entry, index) => {
+        //     console.log(entry.id);
+        //     if (id == entry.id) { console.log('this id was matched', entry.id); return entry; };
+        //     return null;
+        // });
+        // console
+
+        // return done;
+        // return this.entries.filter((entry) => {
+        //     console.log(entry.id);
+        //     if (id == entry.id) return entry;
+        // });
+        for (var i = 0; i < this.entries.length; i++) {
+            if (id == this.entries[i].id) return this.entries[i];
+        }
         return null;
     },
     createEntry: function createEntry(data) {
