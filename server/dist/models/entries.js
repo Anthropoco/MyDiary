@@ -10,10 +10,11 @@ var entriesModel = {
     entries: [{ id: 1, date: "02/12/2017", title: "dummy entry title", text: "dummy entry body. lorem ipsum bla bla bla" }],
 
     getAllEntries: function getAllEntries() {
-        return entries;
+        console.log('just about to run Model.getAllEntries()');
+        return this.entries;
     },
     getEntry: function getEntry(id) {
-        entries.forEach(function (entry, index) {
+        this.entries.forEach(function (entry, index) {
             if (id === entry.id) {
                 return entry;
             };
@@ -47,4 +48,4 @@ var entriesModel = {
     }
 };
 
-exports.entriesModel = entriesModel;
+exports.default = entriesModel;
