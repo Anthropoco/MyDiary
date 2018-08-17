@@ -25,6 +25,7 @@ app.use('/users', _users.usersRouter);
 //the order of the next two is important
 app.use('/entries/:id', _entries.entriesRouter);
 app.use('/entries', _entries.entriesRouter);
+app.use('/entries/:id', _entries.entriesRouter);
 
 app.listen(3000, function () {
   return console.log('Example app listening on port 3000!');
