@@ -1,7 +1,8 @@
-import entriesController from '../controllers/entries';
+import { entriesController } from '../controllers/entries';
 
-const entriesRouter = (req, res, next) => {
-    app.all('/entries', entriesController);
+const entriesRouter = (req, res) => {
+    entriesController(req, res);
+    console.log('outer router');
 }
 
 export { entriesRouter };

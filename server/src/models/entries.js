@@ -1,5 +1,5 @@
 let entriesModel = {
-    
+
     id: 1, //create an id issuing system. it will be incremented for each new entry
 
     entries: [
@@ -7,11 +7,12 @@ let entriesModel = {
     ],
 
     getAllEntries() {
-        return entries;
+        console.log('just about to run Model.getAllEntries()');
+        return this.entries;
     },
 
     getEntry(id) {
-        entries.forEach((entry, index) => {
+        this.entries.forEach((entry, index) => {
             if (id === entry.id) { return entry; };
         });
         return null;
@@ -42,4 +43,4 @@ let entriesModel = {
     }
 }
 
-export { entriesModel };
+export default entriesModel;
