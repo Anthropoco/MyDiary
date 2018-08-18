@@ -10,7 +10,6 @@ app.use('/users', usersRouter);
 //the order of the next two is important
 app.use('/entries/:id', entriesRouter);
 app.use('/entries', entriesRouter);
-app.use('/entries/:id', entriesRouter);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
