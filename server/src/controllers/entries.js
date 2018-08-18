@@ -50,15 +50,16 @@ const entriesController = (req, res) => {
     if(req.method == 'POST') createNewEntry(req, res);
 
     //modify an existing entry
-    app.put('/entries/:id', (req, res) => {
+    let modifyEntry = (req, res) => {
         const changedEntry = entriesModel.modifyEntry(req.params.id, req.body);
         if (changedEntry) {
             res.send(200, "entry was modified successfully");
         } else {
             res.send(400, "sorry we couldn't modify the entry. Try again");
         }
-    })
+    };
 
+    if (req.method == 'PUT') modifyEntry(req, res);
 
     //delete an entry
     app.delete('/entries/:id', (req, res) => {

@@ -59,14 +59,16 @@ var entriesController = function entriesController(req, res) {
     if (req.method == 'POST') createNewEntry(req, res);
 
     //modify an existing entry
-    _app2.default.put('/entries/:id', function (req, res) {
+    var modifyEntry = function modifyEntry(req, res) {
         var changedEntry = _entries2.default.modifyEntry(req.params.id, req.body);
         if (changedEntry) {
             res.send(200, "entry was modified successfully");
         } else {
             res.send(400, "sorry we couldn't modify the entry. Try again");
         }
-    });
+    };
+
+    if (req.method == 'PUT') modifyEntry(req, res);
 
     //delete an entry
     _app2.default.delete('/entries/:id', function (req, res) {

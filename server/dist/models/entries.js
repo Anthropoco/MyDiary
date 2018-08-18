@@ -28,7 +28,7 @@ var entriesModel = {
         var entry = this.getEntry(entryId);
         if (!entry) return null;
 
-        //TODO confirm if the following overwrites the entry
+        //overwrites the entry
         entry = Object.assign(entry, data);
 
         return entry;
