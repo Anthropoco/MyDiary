@@ -71,16 +71,16 @@ var entriesController = function entriesController(req, res) {
     if (req.method == 'PUT') modifyEntry(req, res);
 
     //delete an entry
-    _app2.default.delete('/entries/:id', function (req, res) {
+    var deleteEntry = function deleteEntry(req, res) {
         var deletedEntry = _entries2.default.deleteEntry(req.params.id);
         if (deletedEntry) {
             res.send(200, "entry was deleted successfully");
-            res.end();
         } else {
-            res.send(400, "sorry we couldn't deleted the entry. Try again");
-            res.end();
+            res.send(400, "sorry we couldn't delete the entry. Try again");
         }
-    });
+    };
+
+    if (req.method == 'DELETE') deleteEntry(req, res);
     console.log('outer controller');
 };
 

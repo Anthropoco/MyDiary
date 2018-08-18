@@ -20,9 +20,9 @@ const entriesController = (req, res) => {
 
     };
 
-    if (req.method == 'GET' 
+    if (req.method == 'GET'
         && Boolean(Number(req.params.id)) /*awkward code makes the if statement run
-         if and only if req.params.id is non-empty*/ ) 
+         if and only if req.params.id is non-empty*/ )
         getEntry(req, res);
 
 
@@ -47,7 +47,7 @@ const entriesController = (req, res) => {
         }
     };
 
-    if(req.method == 'POST') createNewEntry(req, res);
+    if (req.method == 'POST') createNewEntry(req, res);
 
     //modify an existing entry
     let modifyEntry = (req, res) => {
@@ -62,16 +62,16 @@ const entriesController = (req, res) => {
     if (req.method == 'PUT') modifyEntry(req, res);
 
     //delete an entry
-    app.delete('/entries/:id', (req, res) => {
+    let deleteEntry = (req, res) => {
         const deletedEntry = entriesModel.deleteEntry(req.params.id);
         if (deletedEntry) {
             res.send(200, "entry was deleted successfully");
-            res.end();
         } else {
-            res.send(400, "sorry we couldn't deleted the entry. Try again");
-            res.end();
+            res.send(400, "sorry we couldn't delete the entry. Try again");
         }
-    })
+    };
+
+    if (req.method == 'DELETE') deleteEntry(req, res);
     console.log('outer controller');
 }
 

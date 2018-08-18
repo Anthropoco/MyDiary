@@ -34,12 +34,16 @@ var entriesModel = {
         return entry;
     },
     deleteEntry: function deleteEntry(entryId) {
-        var entry = this.getEntry(entryId);
-        var idx = entries.indexOf(entry);
-        var prevlen = entries.length;
-        entries.splice(idx, 1); //delete the element using its index
-        if (entries.length < prevlen) {
-            return true;
+        var entryToDelete = this.getEntry(entryId);
+        if (entryToDelete) {
+            var idx = this.entries.indexOf(entryToDelete);
+            var prevlen = this.entries.length;
+            this.entries.splice(idx, 1); //delete the element using its index
+            if (this.entries.length < prevlen) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
