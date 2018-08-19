@@ -13,9 +13,9 @@ const usersController = (req, res) => {
         app.get('/users/:id', (req, res) => {
             const user = usersModel.getUser(req.params.id, req.body.password);  //parameters are username and password
             if (user) {
-                res.send(200, "successfully logged in")
+                res.status(200).send("successfully logged in")
             } else {
-                res.send(400, "login was not successful. Try again")
+                res.status(400).send("login was not successful. Try again")
             }
 
         });

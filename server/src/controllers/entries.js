@@ -38,9 +38,9 @@ const entriesController = (req, res) => {
     let createNewEntry = (req, res) => {
         const newEntry = entriesModel.createEntry(req.body);
         if (newEntry) {
-            res.send(200, "entry was created successfully");
+            res.status(200).send("entry was created successfully");
         } else {
-            res.send(400, "sorry we couldn't create the entry. Try again");
+            res.status(400).send("sorry we couldn't create the entry. Try again");
         }
     };
 
@@ -50,9 +50,9 @@ const entriesController = (req, res) => {
     let modifyEntry = (req, res) => {
         const changedEntry = entriesModel.modifyEntry(req.params.id, req.body);
         if (changedEntry) {
-            res.send(200, "entry was modified successfully");
+            res.status(200).send("entry was modified successfully");
         } else {
-            res.send(400, "sorry we couldn't modify the entry. Try again");
+            res.status(400).send("sorry we couldn't modify the entry. Try again");
         }
     };
 
@@ -62,9 +62,9 @@ const entriesController = (req, res) => {
     let deleteEntry = (req, res) => {
         const deletedEntry = entriesModel.deleteEntry(req.params.id);
         if (deletedEntry) {
-            res.send(200, "entry was deleted successfully");
+            res.status(200).send("entry was deleted successfully");
         } else {
-            res.send(400, "sorry we couldn't delete the entry. Try again");
+            res.status(400).send("sorry we couldn't delete the entry. Try again");
         }
     };
 
