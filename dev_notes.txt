@@ -1,0 +1,14 @@
+current issue: app is not defined in entriesRouter and usersRouter  15/08/2018
+used circular reference to solve the above  16/08/2018
+
+lessons learnt 16/08/18
+    app.use app.get ... are event listeners which will run only once per server request
+    you can only call them in the app.js then use conditionals to execute to execute code in your router and controller
+    JSON data use only double quotes (") and NOT single qoutes (') to wrap keys and values
+    Array.filter will always run to last iteration regardless of whether there is a return within it or not
+    Array.every can only halt iteration if you explicitly return false.
+    To return a desirable array element use filter or better still the traditional for loop
+
+TODO    remove debugging console.logs
+        uncomment user login validation in controller
+        replace 'export default' for deconstructing exports
