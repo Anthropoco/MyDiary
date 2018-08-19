@@ -7,7 +7,6 @@ let entriesModel = {
     ],
 
     getAllEntries() {
-        console.log('just about to run Model.getAllEntries()');
         return this.entries;
     },
 

@@ -10,7 +10,6 @@ var entriesModel = {
     entries: [{ id: 1, date: "02/12/2017", title: "dummy entry title", text: "dummy entry body. lorem ipsum bla bla bla" }],
 
     getAllEntries: function getAllEntries() {
-        console.log('just about to run Model.getAllEntries()');
         return this.entries;
     },
     getEntry: function getEntry(id) {

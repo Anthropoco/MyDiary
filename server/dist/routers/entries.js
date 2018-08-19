@@ -9,7 +9,6 @@ var _entries = require('../controllers/entries');
 
 var entriesRouter = function entriesRouter(req, res) {
     (0, _entries.entriesController)(req, res);
-    console.log('outer router');
 };
 
 exports.entriesRouter = entriesRouter;

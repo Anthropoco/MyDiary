@@ -16,7 +16,6 @@ var _app2 = _interopRequireDefault(_app);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entriesController = function entriesController(req, res) {
-    console.log('into controller');
     // let users = usersModel.getAllUsers();
 
     // //if user isn't a member, redirect to home page
@@ -38,10 +37,8 @@ var entriesController = function entriesController(req, res) {
 
     //get list of entries
     var getAllEntries = function getAllEntries(req, res) {
-        console.log('into get entries handler');
         var entries = _entries2.default.getAllEntries();
         res.json(entries);
-        console.log('outer get entries handler');
     };
 
     if (req.method == 'GET' && !Boolean(Number(req.params.id))) getAllEntries(req, res);
@@ -81,7 +78,6 @@ var entriesController = function entriesController(req, res) {
     };
 
     if (req.method == 'DELETE') deleteEntry(req, res);
-    console.log('outer controller');
 };
 
 exports.entriesController = entriesController;

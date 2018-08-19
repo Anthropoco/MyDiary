@@ -2,7 +2,6 @@ import entriesModel from '../models/entries';
 import app from '../app';
 
 const entriesController = (req, res) => {
-    console.log('into controller');
     // let users = usersModel.getAllUsers();
 
     // //if user isn't a member, redirect to home page
@@ -28,10 +27,8 @@ const entriesController = (req, res) => {
 
     //get list of entries
     let getAllEntries = (req, res) => {
-        console.log('into get entries handler');
         const entries = entriesModel.getAllEntries();
         res.json(entries);
-        console.log('outer get entries handler');
     };
 
     if (req.method == 'GET' && !Boolean(Number(req.params.id))) getAllEntries(req, res);
@@ -72,7 +69,6 @@ const entriesController = (req, res) => {
     };
 
     if (req.method == 'DELETE') deleteEntry(req, res);
-    console.log('outer controller');
 }
 
 export { entriesController };
