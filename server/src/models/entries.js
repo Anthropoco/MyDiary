@@ -13,14 +13,16 @@ let entriesModel = {
                 res.end();
             });
     },
-        
 
-    getEntry(id) {
-        for (let i = 0; i < this.entries.length; i++) {
-            if (id == this.entries[i].id) return this.entries[i];
-        }
-        return null;
 
+    getEntry(req, res) {
+        db.one('SELECT * FROM entries WHERE id = $1', req.params.id)
+        .then((entry)=>{
+            res.end(JSON.stringify(entry));
+        })
+        .catch((err)=>{
+            res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
+        })
     },
 
     createEntry(data) {

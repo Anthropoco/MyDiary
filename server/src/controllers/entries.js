@@ -10,13 +10,7 @@ const entriesController = (req, res) => {
 
     //get a particular entry
     let getEntry = (req, res) => {
-        const entry = entriesModel.getEntry(req.params.id);
-        if (entry) {
-            res.json(entry);
-        } else {
-            res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
-        }
-
+        entriesModel.getEntry(req, res);
     };
 
     if (req.method == 'GET'

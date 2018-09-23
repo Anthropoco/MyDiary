@@ -21,11 +21,12 @@ var entriesModel = {
             res.end();
         });
     },
-    getEntry: function getEntry(id) {
-        for (var i = 0; i < this.entries.length; i++) {
-            if (id == this.entries[i].id) return this.entries[i];
-        }
-        return null;
+    getEntry: function getEntry(req, res) {
+        db.one('SELECT * FROM entries WHERE id = $1', req.params.id).then(function (entry) {
+            res.end(JSON.stringify(entry));
+        }).catch(function (err) {
+            res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
+        });
     },
     createEntry: function createEntry(data) {
         data.id = ++this.id; //assign id to our new entry

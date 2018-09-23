@@ -24,12 +24,7 @@ var entriesController = function entriesController(req, res) {
 
     //get a particular entry
     var getEntry = function getEntry(req, res) {
-        var entry = _entries2.default.getEntry(req.params.id);
-        if (entry) {
-            res.json(entry);
-        } else {
-            res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
-        }
+        _entries2.default.getEntry(req, res);
     };
 
     if (req.method == 'GET' && Boolean(Number(req.params.id)) /*awkward code makes the if statement run
