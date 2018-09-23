@@ -1,4 +1,7 @@
 #ignore node modules
-node_modules/
 node_modules
+#ignore ide generated file
 vim.exe.stackdump
+
+#ignore trial app file
+server/src/trialApp.js
