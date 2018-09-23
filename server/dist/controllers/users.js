@@ -24,9 +24,9 @@ var usersController = function usersController(req, res) {
         app.get('/users/:id', function (req, res) {
             var user = _users2.default.getUser(req.params.id, req.body.password); //parameters are username and password
             if (user) {
-                res.send(200, "successfully logged in");
+                res.status(200).send("successfully logged in");
             } else {
-                res.send(400, "login was not successful. Try again");
+                res.status(400).send("login was not successful. Try again");
             }
         });
 

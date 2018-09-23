@@ -1,14 +1,19 @@
+import pgpromise from 'pg-promise';
+const pgp = pgpromise({});
+const db = pgp('postgres://postgres@localhost:5432/diary');
+
 let entriesModel = {
 
-    id: 1, //create an id issuing system. it will be incremented for each new entry
 
-    entries: [
-        { id: 1, date: "02/12/2017", title: "dummy entry title", text: "dummy entry body. lorem ipsum bla bla bla" },
-    ],
-
-    getAllEntries() {
-        return this.entries;
+    getAllEntries(req, res) {
+        db.any('SELECT * FROM entries')
+            .then(data => {
+                console.log(JSON.stringify(data));
+                res.write(JSON.stringify(data));
+                res.end();
+            });
     },
+        
 
     getEntry(id) {
         for (let i = 0; i < this.entries.length; i++) {
@@ -41,7 +46,7 @@ let entriesModel = {
             const prevlen = this.entries.length;
             this.entries.splice(idx, 1); //delete the element using its index
             if (this.entries.length < prevlen) { return true } else { return false }
-        }else{
+        } else {
             return false;
         }
     }

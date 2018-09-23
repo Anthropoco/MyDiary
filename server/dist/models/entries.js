@@ -1,16 +1,25 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _pgPromise = require('pg-promise');
+
+var _pgPromise2 = _interopRequireDefault(_pgPromise);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pgp = (0, _pgPromise2.default)({});
+var db = pgp('postgres://postgres@localhost:5432/diary');
+
 var entriesModel = {
-
-    id: 1, //create an id issuing system. it will be incremented for each new entry
-
-    entries: [{ id: 1, date: "02/12/2017", title: "dummy entry title", text: "dummy entry body. lorem ipsum bla bla bla" }],
-
-    getAllEntries: function getAllEntries() {
-        return this.entries;
+    getAllEntries: function getAllEntries(req, res) {
+        db.any('SELECT * FROM entries').then(function (data) {
+            console.log(JSON.stringify(data));
+            res.write(JSON.stringify(data));
+            res.end();
+        });
     },
     getEntry: function getEntry(id) {
         for (var i = 0; i < this.entries.length; i++) {

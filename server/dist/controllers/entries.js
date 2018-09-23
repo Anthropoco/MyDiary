@@ -37,8 +37,7 @@ var entriesController = function entriesController(req, res) {
 
     //get list of entries
     var getAllEntries = function getAllEntries(req, res) {
-        var entries = _entries2.default.getAllEntries();
-        res.json(entries);
+        _entries2.default.getAllEntries(req, res);
     };
 
     if (req.method == 'GET' && !Boolean(Number(req.params.id))) getAllEntries(req, res);
@@ -47,9 +46,9 @@ var entriesController = function entriesController(req, res) {
     var createNewEntry = function createNewEntry(req, res) {
         var newEntry = _entries2.default.createEntry(req.body);
         if (newEntry) {
-            res.send(200, "entry was created successfully");
+            res.status(200).send("entry was created successfully");
         } else {
-            res.send(400, "sorry we couldn't create the entry. Try again");
+            res.status(400).send("sorry we couldn't create the entry. Try again");
         }
     };
 
@@ -59,9 +58,9 @@ var entriesController = function entriesController(req, res) {
     var modifyEntry = function modifyEntry(req, res) {
         var changedEntry = _entries2.default.modifyEntry(req.params.id, req.body);
         if (changedEntry) {
-            res.send(200, "entry was modified successfully");
+            res.status(200).send("entry was modified successfully");
         } else {
-            res.send(400, "sorry we couldn't modify the entry. Try again");
+            res.status(400).send("sorry we couldn't modify the entry. Try again");
         }
     };
 
@@ -71,9 +70,9 @@ var entriesController = function entriesController(req, res) {
     var deleteEntry = function deleteEntry(req, res) {
         var deletedEntry = _entries2.default.deleteEntry(req.params.id);
         if (deletedEntry) {
-            res.send(200, "entry was deleted successfully");
+            res.status(200).send("entry was deleted successfully");
         } else {
-            res.send(400, "sorry we couldn't delete the entry. Try again");
+            res.status(400).send("sorry we couldn't delete the entry. Try again");
         }
     };
 

@@ -27,8 +27,7 @@ const entriesController = (req, res) => {
 
     //get list of entries
     let getAllEntries = (req, res) => {
-        const entries = entriesModel.getAllEntries();
-        res.json(entries);
+        entriesModel.getAllEntries(req, res);
     };
 
     if (req.method == 'GET' && !Boolean(Number(req.params.id))) getAllEntries(req, res);
