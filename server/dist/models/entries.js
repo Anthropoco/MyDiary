@@ -18,19 +18,23 @@ var pgp = (0, _pgPromise2.default)({});
 var db = pgp('postgres://postgres@localhost:5432/diary');
 
 function generateID(func) {
-    _fs2.default.readFile('./server/src/models/lastAssignedID', function (err, idBuffer) {
-        if (err) throw err;
-        var id = Number(idBuffer.toString('utf8')) + 1;
-        func(id);
+    return new Promise(function (resolve, reject) {
+        _fs2.default.readFile('./server/src/models/lastAssignedID', function (err, idBuffer) {
+            if (err) reject(err);
+            var id = Number(idBuffer.toString('utf8')) + 1;
+            resolve(id);
+        });
     });
 }
 
 function updateIDStore(id) {
-    _fs2.default.writeFile('./server/src/models/lastAssignedID', id, function (err) {
-        if (err) {
-            throw err;
-        }
-        return;
+    return new Promise(function (resolve, reject) {
+        _fs2.default.writeFile('./server/src/models/lastAssignedID', id, function (err) {
+            if (err) {
+                reject(err);
+            }
+            resolve;
+        });
     });
 }
 
@@ -51,15 +55,16 @@ var entriesModel = {
     },
     createEntry: function createEntry(data, res) {
         console.log(data);
-        generateID(function (id) {
+        generateID().then(function (id) {
             console.log('generatedID', id);
-            db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text]).then(function () {
-                updateIDStore(id);
-                res.status(200).send("entry was created successfully");
-            }).catch(function (err) {
-                console.log(err);
-                res.status(400).send("sorry we couldn't create the entry. Try again");
-            });
+            db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text]);
+            return id;
+        }).then(function (id) {
+            updateIDStore(id);
+            res.status(200).send("entry was created successfully");
+        }).catch(function (err) {
+            console.log(err);
+            res.status(400).send("sorry we couldn't create the entry. Try again");
         });
     },
     modifyEntry: function modifyEntry(entryId, data) {
