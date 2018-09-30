@@ -76,16 +76,14 @@ let entriesModel = {
             });
     },
 
-    deleteEntry(entryId) {
-        let entryToDelete = this.getEntry(entryId);
-        if (entryToDelete) {
-            const idx = this.entries.indexOf(entryToDelete);
-            const prevlen = this.entries.length;
-            this.entries.splice(idx, 1); //delete the element using its index
-            if (this.entries.length < prevlen) { return true } else { return false }
-        } else {
-            return false;
-        }
+    deleteEntry(entryId, res) {
+        db.none('DELETE FROM entries WHERE id = $1', entryId)
+            .then(() => {
+                res.status(200).send("entry was deleted successfully");
+            })
+            .catch((err) => {
+                res.status(400).send("sorry we couldn't delete the entry. Try again");
+            });
     }
 }
 

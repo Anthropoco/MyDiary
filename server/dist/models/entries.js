@@ -75,20 +75,12 @@ var entriesModel = {
             res.status(400).send("sorry we couldn't modify the entry. Try again");
         });
     },
-    deleteEntry: function deleteEntry(entryId) {
-        var entryToDelete = this.getEntry(entryId);
-        if (entryToDelete) {
-            var idx = this.entries.indexOf(entryToDelete);
-            var prevlen = this.entries.length;
-            this.entries.splice(idx, 1); //delete the element using its index
-            if (this.entries.length < prevlen) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+    deleteEntry: function deleteEntry(entryId, res) {
+        db.none('DELETE FROM entries WHERE id = $1', entryId).then(function () {
+            res.status(200).send("entry was deleted successfully");
+        }).catch(function (err) {
+            res.status(400).send("sorry we couldn't delete the entry. Try again");
+        });
     }
 };
 

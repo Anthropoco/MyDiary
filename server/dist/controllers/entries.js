@@ -53,12 +53,7 @@ var entriesController = function entriesController(req, res) {
 
     //delete an entry
     var deleteEntry = function deleteEntry(req, res) {
-        var deletedEntry = _entries2.default.deleteEntry(req.params.id);
-        if (deletedEntry) {
-            res.status(200).send("entry was deleted successfully");
-        } else {
-            res.status(400).send("sorry we couldn't delete the entry. Try again");
-        }
+        _entries2.default.deleteEntry(req.params.id, res);
     };
 
     if (req.method == 'DELETE') deleteEntry(req, res);

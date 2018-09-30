@@ -44,12 +44,7 @@ const entriesController = (req, res) => {
 
     //delete an entry
     let deleteEntry = (req, res) => {
-        const deletedEntry = entriesModel.deleteEntry(req.params.id);
-        if (deletedEntry) {
-            res.status(200).send("entry was deleted successfully");
-        } else {
-            res.status(400).send("sorry we couldn't delete the entry. Try again");
-        }
+        entriesModel.deleteEntry(req.params.id, res);
     };
 
     if (req.method == 'DELETE') deleteEntry(req, res);
