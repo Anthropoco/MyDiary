@@ -67,14 +67,13 @@ var entriesModel = {
             res.status(400).send("sorry we couldn't create the entry. Try again");
         });
     },
-    modifyEntry: function modifyEntry(entryId, data) {
-        var entry = this.getEntry(entryId);
-        if (!entry) return null;
-
-        //overwrites the entry
-        entry = Object.assign(entry, data);
-
-        return entry;
+    modifyEntry: function modifyEntry(entryId, data, res) {
+        db.any('UPDATE entries SET title = $1, text = $2 WHERE id = $3', [data.title, data.text, entryId]).then(function () {
+            res.status(200).send("entry was modified successfully");
+        }).catch(function (err) {
+            console.log(err);
+            res.status(400).send("sorry we couldn't modify the entry. Try again");
+        });
     },
     deleteEntry: function deleteEntry(entryId) {
         var entryToDelete = this.getEntry(entryId);

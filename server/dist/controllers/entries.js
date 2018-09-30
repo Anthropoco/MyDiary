@@ -46,12 +46,7 @@ var entriesController = function entriesController(req, res) {
 
     //modify an existing entry
     var modifyEntry = function modifyEntry(req, res) {
-        var changedEntry = _entries2.default.modifyEntry(req.params.id, req.body);
-        if (changedEntry) {
-            res.status(200).send("entry was modified successfully");
-        } else {
-            res.status(400).send("sorry we couldn't modify the entry. Try again");
-        }
+        _entries2.default.modifyEntry(req.params.id, req.body, res);
     };
 
     if (req.method == 'PUT') modifyEntry(req, res);

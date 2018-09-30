@@ -3,20 +3,20 @@ import fs from 'fs';
 const pgp = pgpromise({});
 const db = pgp('postgres://postgres@localhost:5432/diary');
 
-function generateID(func){
-   return new Promise((resolve, reject)=>{
-    fs.readFile('./server/src/models/lastAssignedID', (err, idBuffer)=>{
-        if(err) reject(err);
-        const id = Number(idBuffer.toString('utf8')) + 1;
-        resolve(id);
-    });
-   })
+function generateID(func) {
+    return new Promise((resolve, reject) => {
+        fs.readFile('./server/src/models/lastAssignedID', (err, idBuffer) => {
+            if (err) reject(err);
+            const id = Number(idBuffer.toString('utf8')) + 1;
+            resolve(id);
+        });
+    })
 }
 
-function updateIDStore(id){
-    return new Promise((resolve, reject)=>{
-        fs.writeFile('./server/src/models/lastAssignedID', id, (err)=>{
-            if(err){reject(err);}
+function updateIDStore(id) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./server/src/models/lastAssignedID', id, (err) => {
+            if (err) { reject(err); }
             resolve;
         });
     });
@@ -48,31 +48,32 @@ let entriesModel = {
     createEntry(data, res) {
         console.log(data);
         generateID()
-        .then((id)=>{
-            console.log('generatedID', id);
-            db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text]);
-           return id;
-                       
-        })
-        .then((id) => {
-            updateIDStore(id);
-            res.status(200).send("entry was created successfully");
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(400).send("sorry we couldn't create the entry. Try again");
-        });
-        
+            .then((id) => {
+                console.log('generatedID', id);
+                db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text]);
+                return id;
+
+            })
+            .then((id) => {
+                updateIDStore(id);
+                res.status(200).send("entry was created successfully");
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(400).send("sorry we couldn't create the entry. Try again");
+            });
+
     },
 
-    modifyEntry(entryId, data) {
-        let entry = this.getEntry(entryId);
-        if (!entry) return null;
-
-        //overwrites the entry
-        entry = Object.assign(entry, data);
-
-        return entry;
+    modifyEntry(entryId, data, res) {
+        db.any('UPDATE entries SET title = $1, text = $2 WHERE id = $3', [data.title, data.text, entryId])
+            .then(() => {
+                res.status(200).send("entry was modified successfully");
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(400).send("sorry we couldn't modify the entry. Try again");
+            });
     },
 
     deleteEntry(entryId) {
