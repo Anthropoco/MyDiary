@@ -8,10 +8,31 @@ var _pgPromise = require('pg-promise');
 
 var _pgPromise2 = _interopRequireDefault(_pgPromise);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var pgp = (0, _pgPromise2.default)({});
 var db = pgp('postgres://postgres@localhost:5432/diary');
+
+function generateID(func) {
+    _fs2.default.readFile('./server/src/models/lastAssignedID', function (err, idBuffer) {
+        if (err) throw err;
+        var id = Number(idBuffer.toString('utf8')) + 1;
+        func(id);
+    });
+}
+
+function updateIDStore(id) {
+    _fs2.default.writeFile('./server/src/models/lastAssignedID', id, function (err) {
+        if (err) {
+            throw err;
+        }
+        return;
+    });
+}
 
 var entriesModel = {
     getAllEntries: function getAllEntries(req, res) {
@@ -28,10 +49,18 @@ var entriesModel = {
             res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
         });
     },
-    createEntry: function createEntry(data) {
-        data.id = ++this.id; //assign id to our new entry
-        if (this.entries.push(data)) return data;
-        return null;
+    createEntry: function createEntry(data, res) {
+        console.log(data);
+        generateID(function (id) {
+            console.log('generatedID', id);
+            db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text]).then(function () {
+                updateIDStore(id);
+                res.status(200).send("entry was created successfully");
+            }).catch(function (err) {
+                console.log(err);
+                res.status(400).send("sorry we couldn't create the entry. Try again");
+            });
+        });
     },
     modifyEntry: function modifyEntry(entryId, data) {
         var entry = this.getEntry(entryId);

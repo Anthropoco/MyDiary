@@ -1,6 +1,7 @@
 import entriesModel from '../models/entries';
 import app from '../app';
 
+
 const entriesController = (req, res) => {
     // let users = usersModel.getAllUsers();
 
@@ -29,12 +30,7 @@ const entriesController = (req, res) => {
 
     //create a new entry
     let createNewEntry = (req, res) => {
-        const newEntry = entriesModel.createEntry(req.body);
-        if (newEntry) {
-            res.status(200).send("entry was created successfully");
-        } else {
-            res.status(400).send("sorry we couldn't create the entry. Try again");
-        }
+      entriesModel.createEntry(req.body, res);
     };
 
     if (req.method == 'POST') createNewEntry(req, res);

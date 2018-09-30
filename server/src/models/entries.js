@@ -1,6 +1,22 @@
 import pgpromise from 'pg-promise';
+import fs from 'fs';
 const pgp = pgpromise({});
 const db = pgp('postgres://postgres@localhost:5432/diary');
+
+function generateID(func){
+    fs.readFile('./server/src/models/lastAssignedID', (err, idBuffer)=>{
+        if(err) throw err;
+        const id = Number(idBuffer.toString('utf8')) + 1;
+        func(id);
+    });
+}
+
+function updateIDStore(id){
+    fs.writeFile('./server/src/models/lastAssignedID', id, (err)=>{
+        if(err){throw err;}
+        return;
+    });
+}
 
 let entriesModel = {
 
@@ -17,18 +33,30 @@ let entriesModel = {
 
     getEntry(req, res) {
         db.one('SELECT * FROM entries WHERE id = $1', req.params.id)
-        .then((entry)=>{
-            res.end(JSON.stringify(entry));
-        })
-        .catch((err)=>{
-            res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
-        })
+            .then((entry) => {
+                res.end(JSON.stringify(entry));
+            })
+            .catch((err) => {
+                res.status(400).send("Ooops! We couldn't find the entry  you're looking for");
+            })
     },
 
-    createEntry(data) {
-        data.id = ++this.id;     //assign id to our new entry
-        if (this.entries.push(data)) return data;
-        return null;
+    createEntry(data, res) {
+        console.log(data);
+        generateID((id)=>{
+            console.log('generatedID', id);
+            db.manyOrNone('INSERT INTO entries (id, title, text, date) VALUES ($1, $2, $3, NOW())', [id, data.title, data.text])
+            .then(() => {
+                updateIDStore(id);
+                res.status(200).send("entry was created successfully");
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(400).send("sorry we couldn't create the entry. Try again");
+            })
+            
+        });
+        
     },
 
     modifyEntry(entryId, data) {

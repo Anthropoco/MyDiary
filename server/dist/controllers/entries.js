@@ -39,12 +39,7 @@ var entriesController = function entriesController(req, res) {
 
     //create a new entry
     var createNewEntry = function createNewEntry(req, res) {
-        var newEntry = _entries2.default.createEntry(req.body);
-        if (newEntry) {
-            res.status(200).send("entry was created successfully");
-        } else {
-            res.status(400).send("sorry we couldn't create the entry. Try again");
-        }
+        _entries2.default.createEntry(req.body, res);
     };
 
     if (req.method == 'POST') createNewEntry(req, res);
